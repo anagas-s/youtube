@@ -7,7 +7,7 @@ const Head = () => {
 
     const [searchQuery,setSearchQuery] = useState("");
     const [suggestions,setSuggestions] = useState("");
-    
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     useEffect(()=>{
         //make an api call after every key press
@@ -44,17 +44,17 @@ const Head = () => {
         </div>
         <div className="col-span-10 px-12">
             <div>
-            <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full" type="text"></input>
+            <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onFocus={() => setShowSuggestions(true)} onBlur={()=> setShowSuggestions(false)} className="px-5 w-1/2 border border-gray-400 p-2 rounded-l-full" type="text"></input>
             <button className="border border-gray-400 p-2 rounded-r-full px-5 bg-gray-100">🔍</button>    
             </div>
-            <div className="fixed bg-white py-2 px-5 w-[40.5rem] border-gray-100">
+            {showSuggestions && (<div className="fixed bg-white py-2 px-5 w-[40.5rem] border-gray-100">
                 <ul>
                     {suggestions.map((s)=>(
                              <li key={Math.random()} className="py-2 shadow-sm hover:bg-gray-100 ">🔍 {s}</li>
                     ))}
                    
                 </ul>
-            </div>
+            </div>)}
         </div>
 
     
