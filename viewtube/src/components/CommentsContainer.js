@@ -57,11 +57,11 @@ const Comment = ({data}) => {
 }
 
 const CommentsList = ({comments}) => {
-    return <div>
+    return <div key={Math.random(Math.random())}>
         {comments.map(comment => {
             return (
-            <div>
-            <Comment  key={Math.random(Math.random())} data={comment} />
+            <div key={Math.random(Math.random())}>
+            <Comment   data={comment} />
             <div className="pl-5 border border-l-black ml-5">
                 <CommentsList comments = {comment.replies} />
             </div>
